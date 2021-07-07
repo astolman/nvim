@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/andrew/Documents/qmk/keyboards/handwired/onekey/keymaps/joystick'
+let g:netrw_dirhist_2='/home/andrew/Documents/qmk/keyboards/handwired/onekey/blackpill_f401'
+let g:netrw_dirhist_1='/home/andrew/.config/coc/extensions/node_modules/coc-python'
