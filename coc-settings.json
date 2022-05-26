@@ -1,16 +1,11 @@
 {
-	"python.autoComplete.extraPaths": [
-		"/home/andrew/Documents/workspace/emBench",
-		"/usr/lib/python38.zip",
-		"/usr/lib/python3.8",
-		"/usr/lib/python3.8/lib-dynload",
-		"/home/andrew/.local/lib/python3.8/site-packages",
-		"/usr/local/lib/python3.8/dist-packages",
-		"/usr/lib/python3/dist-packages"
-	],
-	"explorer.icon.enableNerdfont": true,
-	"explorer.keyMappings.global": {
-		"v": "open:vsplit"
-	},
-	"snippets.userSnippetsDirectory": "~/.config/nvim/snips"
+	"python.formatting.blackPath": "/home/andrew/miniconda3/envs/katana-dev/bin/black",
+	"python.linting.pylintEnabled": true,
+	"python.formatting.provider": "black",
+	"pyright.organizeimports.provider": "isort",
+	"python.pythonPath": "/home/andrew/miniconda3/envs/katana-dev/bin/python",
+	"python.linting.pylintPath": "/home/andrew/miniconda3/envs/katana-dev/bin/pylint",
+	"python.linting.pylintArgs": ["--rcfile=/home/andrew/katana-enterprse/.pylintrc"],
+	"semanticTokens.filetypes": ["cpp"],
+	"coc.preferences.formatOnSaveFiletypes": ["python", "cpp", "c"]
 }

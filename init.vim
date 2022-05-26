@@ -3,23 +3,27 @@ call plug#begin('~/.vim/plugged')
 Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-operator-user'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'lervag/vimtex'
+"Plug 'lervag/vimtex'
 Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
 Plug 'tommcdo/vim-exchange'
 Plug 'unblevable/quick-scope'
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/vim-easy-align'
 Plug 'honza/vim-snippets'
 Plug 'gennaro-tedesco/nvim-peekup'
 "IDE type stuff
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'dag/vim-fish'
-Plug 'wmvanvliet/jupyter-vim'
-Plug 'vim-python/python-syntax'
+"Plug 'luk400/vim-jukit'
+"Plug 'wmvanvliet/jupyter-vim'
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 Plug 'majutsushi/tagbar'
+"Plug 'rhysd/vim-clang-format'
 "File browsing
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Cosmetics
@@ -30,14 +34,17 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 set hidden
-"read man pages in vim
-runtime ftplugin/man.vim
-
 set hlsearch
 set mouse=a
 set showcmd
-""""""""KEYBINDS""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:let mapleader = ' '
+set nu
+let mapleader = ' '
+
+augroup FileTypeSpecificAutocommands
+	autocmd FileType cpp setlocal shiftwidth=2 expandtab
+	autocmd FileType python setlocal shiftwidth=4 expandtab
+augroup END
+
 
 "saving and quitting
 nnoremap <leader>w :w<CR>
@@ -57,16 +64,6 @@ let g:sneak#s_next = 1
 nnoremap <silent> <left> :bp<CR>
 nnoremap <silent> <right> :bn<CR>
 
-
-""""""""PLUGINS""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"easy-align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-
-"coc-explorer for the filebrowser
-nnoremap <leader>o :CocCommand explorer<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-
 "open FZF
 nnoremap <leader>f :FZF<CR>
 
@@ -77,6 +74,7 @@ nnoremap <leader>t :TagbarToggle<CR>
 nnoremap <leader>g :Git 
 
 "vim-airline settings
+let g:airline#extensions#tabline#ignore_bufadd_pat = 'defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = "term"
 
@@ -88,29 +86,14 @@ let g:qs_max_chars=500
 let g:python_highlight_all = 1
 syntax on
 
-"vimtex
-let g:tex_flavor = 'latex'
-let g:vimtex_view_method = 'mupdf'
-let g:vimtex_latexmk_progname='/usr/bin/nvr'
-let g:vimtex_compiler_latexmk = {
-    \ 'options' : [
-    \   '-pdf',
-    \   '-shell-escape',
-    \   '-verbose',
-    \   '-file-line-error',
-    \   '-synctex=1',
-    \   '-interaction=nonstopmode',
-    \ ],
-    \}
+"""""""Startify settings"""""""
+let g:startify_session_autoload = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_fortune_use_unicode = 1
+let g:startify_session_persistence = 1
 
-"jupyter-vim
-let g:jupyter_mapkeys = 0
-nnoremap <leader>jc :JupyterConnect<CR>
-nnoremap <leader>jx :JupyterSendCell<CR>
-"restart jupyter kernel
-nnoremap <leader>jr :JupyterSendCode "import os;\nos._exit(00)"<CR>
-nnoremap <leader>jl :JupyterSendCount<CR>
-nnoremap <C-J> :JupyterSendCell<CR>
+"c++ formatting
+"autocmd FileType c,cpp ClangFormatAutoEnable
 
 """"""COC settings""""""
 highlight CocErrorFloat ctermfg=Black guifg=#000000
@@ -120,6 +103,9 @@ set updatetime=200
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" semantic highlighting
+let g:coc_default_semantic_highlight_groups = 1
+let g:lsp_cxx_hl_use_text_props = 1
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -141,11 +127,24 @@ nmap <leader>cn <Plug>(coc-rename)
 nmap <leader>cf  <Plug>(coc-format-selected)
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"Coc snippets
-imap <C-l> <Plug>(coc-snippets-expand)
 
-"""""""Startify settings"""""""
-let g:startify_session_autoload = 1
-let g:startify_session_delete_buffers = 1
-let g:startify_fortune_use_unicode = 1
-let g:startify_session_persistence = 1
+"coc-explorer for the filebrowser
+nnoremap <leader>o :CocCommand explorer<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+"jukit options for jupyter
+"let g:jukit_shell_cmd = "/home/andrew/katana-enterprise/build/python_env.sh ipython"
+
+let g:lsp_cxx_hl_log_file = '/tmp/vim-lsp-cxx-hl.log'
+let g:lsp_cxx_hl_verbose_log = 1
