@@ -31,13 +31,6 @@ Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-"Coc plugins
-Plug 'neoclide/coc-snippets'
-Plug 'neoclide/coc-highlight'
-Plug 'weirongxu/coc-explorer'
-Plug 'fannheyward/coc-pyright'
-Plug 'neoclide/coc-json'
-Plug 'clangd/coc-clangd'
 call plug#end()
 
 set hidden
