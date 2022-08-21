@@ -148,3 +148,13 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 let g:lsp_cxx_hl_log_file = '/tmp/vim-lsp-cxx-hl.log'
 let g:lsp_cxx_hl_verbose_log = 1
+
+"coc extensions
+let g:coc_global_extensions = [
+			\'coc-snippets',
+			\'coc-highlight',
+			\'coc-explorer',
+			\'coc-pyright',
+			\'coc-json',
+			\'coc-clangd',
+			\]
