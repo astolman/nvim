@@ -101,8 +101,12 @@ set cmdheight=2
 set updatetime=200
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              " \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+			      "
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " semantic highlighting
 let g:coc_default_semantic_highlight_groups = 1
 let g:lsp_cxx_hl_use_text_props = 1
@@ -125,8 +129,8 @@ nnoremap <silent> <leader>h :call CocActionAsync('highlight')<CR>
 
 nmap <leader>cn <Plug>(coc-rename)
 nmap <leader>cf  <Plug>(coc-format-selected)
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "coc-explorer for the filebrowser
 nnoremap <leader>o :CocCommand explorer<CR>
