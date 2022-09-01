@@ -1,11 +1,13 @@
 {
-	"python.formatting.blackPath": "/home/andrew/miniconda3/envs/katana-dev/bin/black",
+	"python.formatting.blackPath": "~/miniconda3/envs/katana-dev/bin/black",
 	"python.linting.pylintEnabled": true,
 	"python.formatting.provider": "black",
 	"pyright.organizeimports.provider": "isort",
-	"python.pythonPath": "/home/andrew/miniconda3/envs/katana-dev/bin/python",
-	"python.linting.pylintPath": "/home/andrew/miniconda3/envs/katana-dev/bin/pylint",
-	"python.linting.pylintArgs": ["--rcfile=/home/andrew/katana-enterprse/.pylintrc"],
+	"python.sortImports.path": "~/miniconda3/envs/katana-dev/bin/isort",
+	"python.pythonPath": "~/miniconda3/envs/katana-dev/bin/python",
+	"python.linting.pylintPath": "~/miniconda3/envs/katana-dev/bin/pylint",
+	"python.linting.pylintArgs": ["--rcfile=~/katana-enterprse/.pylintrc"],
 	"semanticTokens.filetypes": ["cpp"],
+	"coc.preferences.willSaveHandlerTimeout": 1000,
 	"coc.preferences.formatOnSaveFiletypes": ["python", "cpp", "c"]
 }

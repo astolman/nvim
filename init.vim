@@ -92,8 +92,6 @@ let g:startify_session_delete_buffers = 1
 let g:startify_fortune_use_unicode = 1
 let g:startify_session_persistence = 1
 
-"c++ formatting
-"autocmd FileType c,cpp ClangFormatAutoEnable
 
 """"""COC settings""""""
 highlight CocErrorFloat ctermfg=Black guifg=#000000
@@ -106,6 +104,9 @@ set updatetime=200
 			      "
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+"isort for python
+autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
 
 " semantic highlighting
 let g:coc_default_semantic_highlight_groups = 1
