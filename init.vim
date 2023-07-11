@@ -14,10 +14,10 @@ Plug 'unblevable/quick-scope'
 "Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/vim-easy-align'
 Plug 'honza/vim-snippets'
-Plug 'gennaro-tedesco/nvim-peekup'
+"Plug 'gennaro-tedesco/nvim-peekup'
 "IDE type stuff
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jackguo380/vim-lsp-cxx-highlight'
+"Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'dag/vim-fish'
 "Plug 'luk400/vim-jukit'
 "Plug 'wmvanvliet/jupyter-vim'
@@ -31,6 +31,8 @@ Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
+"Github links
+Plug 'ruanyl/vim-gh-line'
 call plug#end()
 
 set hidden
@@ -109,8 +111,8 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
 
 " semantic highlighting
-let g:coc_default_semantic_highlight_groups = 1
-let g:lsp_cxx_hl_use_text_props = 1
+"let g:coc_default_semantic_highlight_groups = 1
+"let g:lsp_cxx_hl_use_text_props = 1
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.

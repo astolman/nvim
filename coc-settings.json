@@ -3,11 +3,16 @@
 	"python.linting.pylintEnabled": true,
 	"python.formatting.provider": "black",
 	"pyright.organizeimports.provider": "isort",
-	"python.sortImports.path": "~/miniconda3/envs/katana-dev/bin/isort",
-	"python.pythonPath": "~/miniconda3/envs/katana-dev/bin/python",
-	"python.linting.pylintPath": "~/miniconda3/envs/katana-dev/bin/pylint",
+	"python.sortImports.path": "$CONDA_PREFIX/bin/isort",
+	"python.pythonPath": "$CONDA_PREFIX/bin/python",
+	"python.linting.pylintPath": "$CONDA_PREFIX/bin/pylint",
 	"python.linting.pylintArgs": ["--rcfile=~/katana-enterprse/.pylintrc"],
-	"semanticTokens.filetypes": ["cpp"],
 	"coc.preferences.willSaveHandlerTimeout": 1000,
-	"coc.preferences.formatOnSaveFiletypes": ["python", "cpp", "c"]
+	"semanticTokens.enable": true,
+  "[python][cpp]": {
+	  "coc.preferences.formatOnSave": true
+  },
+  "snippets.ultisnips.pythonPrompt": false,
+  "clangd.path": "$CONDA_PREFIX/bin/clangd",
+  "clangd.arguments": ["--query-driver=$CONDA_PREFIX/bin/gcc,$CONDA_PREFIX/bin/g++"]
 }
